@@ -1,0 +1,3 @@
+add_executable(tef_example_plan example_plan.cpp)
+target_link_libraries(tef_example_plan PRIVATE TrafficEngineeringFabric::tef)
+target_compile_options(tef_example_plan PRIVATE ${TEF_PRIVATE_WARNINGS})

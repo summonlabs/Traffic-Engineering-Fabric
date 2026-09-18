@@ -1,0 +1,29 @@
+# Build trees
+/build/
+/build-*/
+/out/
+cmake-build-*/
+
+# Install prefixes produced by validation runs
+/install/
+/prefix/
+
+# IDE
+.vscode/
+.idea/
+*.user
+
+# Linking by-products
+*.pdb
+*.ilk
+*.exp
+
+# Test and benchmark artifacts
+/artifacts/
+*.tefstate
+*.log
+
+# Editor backups
+*~
+*.orig
+*.rej
