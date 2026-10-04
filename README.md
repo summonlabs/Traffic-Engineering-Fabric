@@ -14,8 +14,8 @@ programs a device, and never claims to know what is actually being forwarded.
 
 * Version: 1.0.0
 * License: Apache License 2.0
-* Documentation: @docs/systems-boundary.md@, @docs/algorithm.md@, @docs/persistence.md@,
-  @docs/concurrency.md@, @docs/validation.md@
+* Documentation: `docs/systems-boundary.md`, `docs/algorithm.md`, `docs/persistence.md`,
+  `docs/concurrency.md`, `docs/validation.md`
 
 ```
 Fabric Topology ---.
@@ -64,7 +64,7 @@ TEF never derives a path: candidate paths arrive with an explicit Path Authority
 allocation that references a path outside the submitted candidate set is rejected by the independent
 verifier. TEF never treats capacity as a property of the world: capacity is usable only under the
 exact `CapacitySnapshot` identity and generation that produced it. Full detail:
-@docs/systems-boundary.md@.
+`docs/systems-boundary.md`.
 
 ### Why global traffic engineering differs from the systems around it
 
@@ -152,7 +152,7 @@ profile declares them: `satisfy_minimums`, `minimize_max_utilization`,
 `preserve_reservations`, `preserve_priority`, `maximize_desired_bandwidth`,
 `fairness_across_groups`, `minimize_failure_domain_concentration`, `minimize_path_count`.
 
-The algorithm is documented in full in @docs/algorithm.md@: deterministic progressive allocation with
+The algorithm is documented in full in `docs/algorithm.md`: deterministic progressive allocation with
 a **max-flow min-cut infeasibility certificate**, bounded deterministic repair, and a bounded
 parametric search for the tightest utilisation ceiling. There is no third-party solver.
 
@@ -201,7 +201,7 @@ authority results, candidate sets, demand sets, publisher registrations, leases 
 be re-submitted by their owner after a restart. A restored plan reopens as
 `REVALIDATION_REQUIRED` and only becomes `CURRENT` after the exact authority it was bound to is
 submitted again. A plan that was still in flight when the process died is reopened as `STALE`,
-never resumed. Details and the crash-window table: @docs/persistence.md@.
+never resumed. Details and the crash-window table: `docs/persistence.md`.
 
 ## Distributed runtime
 
@@ -240,7 +240,7 @@ find_package(TrafficEngineeringFabric 1.0 REQUIRED)
 target_link_libraries(my_app PRIVATE TrafficEngineeringFabric::tef)
 ```
 
-@consumer/@ in this repository is exactly such an independent consumer; it is configured, built and
+`consumer/` in this repository is exactly such an independent consumer; it is configured, built and
 run against the installed package as part of release validation.
 
 ## Using the library
@@ -273,7 +273,7 @@ std::printf("%s", explanation->to_text().c_str());
 std::printf("%s", explanation->to_json().c_str());
 ```
 
-A complete runnable version is @examples/example_plan.cpp@. Planning without the lifecycle is simply
+A complete runnable version is `examples/example_plan.cpp`. Planning without the lifecycle is simply
 `tef::solve(snapshot, options)`; scoring an existing allocation against the active objective is
 `tef::score_allocation(...)`; re-checking an allocation without trusting the solver is
 `tef::verify_allocation(snapshot, allocation)`.
@@ -282,15 +282,15 @@ A complete runnable version is @examples/example_plan.cpp@. Planning without the
 
 | Area | Entry points |
 | --- | --- |
-| demands, paths, snapshots | @tef/model.hpp@: `canonicalize`, `validate_structure`, `encode_snapshot`, `decode_snapshot`, the collection digests |
-| planning | @tef/solver.hpp@: `solve`, `score_allocation`; @tef/derived.hpp@: `derive` |
-| verification | @tef/allocation.hpp@: `verify_allocation`, `compare_churn` |
-| lifecycle | @tef/engine.hpp@: `Engine` (declare, validate, solve, authorize, commit, supersede, mark_stale, retire, revalidate, recover_from_repository, queries) |
-| explanations | @tef/explain.hpp@: `build_explanation`, `Explanation::to_json`, `Explanation::to_text` |
-| authority | @tef/authority.hpp@: `authority_of`, `compare_authority` |
-| persistence | @tef/persist.hpp@: `PlanRepository` and the record codecs |
-| distributed | @tef/coordinator.hpp@, @tef/publisher.hpp@, @tef/protocol.hpp@, @tef/net.hpp@ |
-| tooling | @tef/inspect.hpp@ renderers |
+| demands, paths, snapshots | `tef/model.hpp`: `canonicalize`, `validate_structure`, `encode_snapshot`, `decode_snapshot`, the collection digests |
+| planning | `tef/solver.hpp`: `solve`, `score_allocation`; `tef/derived.hpp`: `derive` |
+| verification | `tef/allocation.hpp`: `verify_allocation`, `compare_churn` |
+| lifecycle | `tef/engine.hpp`: `Engine` (declare, validate, solve, authorize, commit, supersede, mark_stale, retire, revalidate, recover_from_repository, queries) |
+| explanations | `tef/explain.hpp`: `build_explanation`, `Explanation::to_json`, `Explanation::to_text` |
+| authority | `tef/authority.hpp`: `authority_of`, `compare_authority` |
+| persistence | `tef/persist.hpp`: `PlanRepository` and the record codecs |
+| distributed | `tef/coordinator.hpp`, `tef/publisher.hpp`, `tef/protocol.hpp`, `tef/net.hpp` |
+| tooling | `tef/inspect.hpp` renderers |
 
 ## Tools
 
@@ -338,7 +338,7 @@ PRNG, so any seed reproduces a fabric exactly.
 hardware-forwarding validation of any kind was performed, and no GPU or accelerator test is present
 because none is materially relevant to this boundary. No third-party solver is used.
 
-See @docs/validation.md@ for the full inventory.
+See `docs/validation.md` for the full inventory.
 
 ## Limitations
 
