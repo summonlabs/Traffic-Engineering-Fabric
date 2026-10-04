@@ -227,8 +227,8 @@ cmake --build build
 cd build && ctest --output-on-failure
 ```
 
-Options: @TEF_BUILD_TESTS@, @TEF_BUILD_BENCHMARKS@, @TEF_BUILD_TOOLS@ (all default @ON@),
-@TEF_WARNINGS_AS_ERRORS@ (default @ON@) and @TEF_ENABLE_SANITIZERS@ (default @OFF@).
+Options: `TEF_BUILD_TESTS`, `TEF_BUILD_BENCHMARKS`, `TEF_BUILD_TOOLS` (all default `ON`),
+`TEF_WARNINGS_AS_ERRORS` (default `ON`) and `TEF_ENABLE_SANITIZERS` (default `OFF`).
 
 Install and consume the exported package:
 
@@ -324,7 +324,7 @@ read as such.
 ## Validation: REAL vs SYNTHETIC
 
 **REAL** (genuine OS, filesystem and network behaviour): real TCP sockets; real independent OS
-processes launched from the shipped `tef-node` binary; real @TerminateProcess` / `SIGKILL` of a
+processes launched from the shipped `tef-node` binary; real `TerminateProcess` / `SIGKILL` of a
 live coordinator and a mid-protocol publisher; coordinator restart with epoch advancement and stale
 epoch/boot replay rejection; real close/reopen of durable state; torn, truncated, corrupted and
 garbage durable files; real threads with latch/barrier release and real joins; `cmake --install`
